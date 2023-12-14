@@ -1,0 +1,2 @@
+-- RIGHT OUTER JOIN
+SELECT a."name" AS country_name, a.continent AS continent_code, b."name" AS continent_name FROM country a RIGHT JOIN continent b ON a.continent = b.code WHERE a.continent IS NULL ORDER BY a."name" DESC;

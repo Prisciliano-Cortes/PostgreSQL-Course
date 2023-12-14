@@ -1,0 +1,20 @@
+-- STORED PROCEDURES
+CREATE OR REPLACE PROCEDURE insert_region_proc( INT, VARCHAR )
+AS $$
+BEGIN
+	INSERT INTO regions( region_id, region_name )
+	VALUES($1, $2);
+	
+	RAISE NOTICE 'Variable 1: %, %', $1, $2;
+	
+	-- ROLLBACK; -- REVERTIR LOS CAMBIOS
+	COMMIT; -- GUARDAR LOS CAMBIOS
+END;
+$$
+LANGUAGE plpgsql;
+
+-- SELECT STORED PROCEDURE AND SAVE DATA IN DB
+CALL insert_region_proc(5, 'Central America');
+
+-- SELECT TABLE AFFECTED WITH STORED PROCEDURE
+SELECT * FROM regions;
